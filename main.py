@@ -1,51 +1,49 @@
 #!/usr/bin/env python3
 """
-script that include a selection Menu
+Main script for finance manager.
+Uses Rofi for menus and integrates Addexpenses and Cleanterminal classes.
 """
+
+# Importa tus clases desde sus archivos correspondientes
 from fin_actions.expenses_dir.add_expenses import Addexpenses
 from dp_actions.clean_terminal import Cleanterminal
+from dp_actions.rofi_menu import Rofimenu
+
+
 class Main:
     """
-    Class that include functions, for select, add, and show
+    Main class that manages the application menu and actions.
     """
+
     def __init__(self):
+        # Crear instancias de las clases necesarias
         self.add_expenses = Addexpenses()
-        self.clean_terminal = Cleanterminal()
+        self.rofi = Rofimenu()
+
     def selection(self):
         """
-        function that recieve input to make an action
+        Show main menu using Rofi and handle user actions.
         """
         while True:
-            print("Menu of actions")
-            print("Option 1: add expenses")
-            print("Option 2: show expenses")
-            print("Option 3: clean terminal")
-            print("Option 4: exit")
-            select = input("\nInsert which action you want to do: ")
-            print()
+            # Opciones del menú principal
+            options = [
+                "Add expenses",
+                "Show expenses",
+                "Exit"
+            ]
 
-            if select == "1":
-                print("Action 1 had been selected")
+            # Llamar a Rofi para seleccionar opción
+            select = self.rofi.rofi_menu(options, prompt="Main Menu")
+
+            if not select or select == "Exit":
+                break
+            elif select == "Add expenses":
                 self.add_expenses.adding_bills()
-                print()
-            elif select == "2":
-                print("Action 2 had been selected")
-                self.add_expenses.showing_bills()
-                print()
-            elif select == "3":
-                print("Action 3 had been selected")
-                self.clean_terminal.cleaning_terminal()
-                print()
-            elif select == "4":
-                print("Action 3 had been selected")
-                print("Finishing program! --> byee!")
-                break
-            else:
-                print("Nothing had been selected")
-                print("finishing program! --> bye!!")
-                break
+            elif select == "Show expenses":
+                self.add_expenses.show_json_files()
 
 
 if __name__ == "__main__":
     app = Main()
     app.selection()
+
