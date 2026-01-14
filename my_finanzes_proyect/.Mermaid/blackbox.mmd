@@ -1,0 +1,23 @@
+flowchart TD
+    A[Usuario] --> B[Black Box: MY FINANZES]
+
+    B --> B1[Inputs: Insert / Show / Edit / Delete / Search]
+    B --> B2[Outputs: Confirmations / Lists / Reports / Alerts / Errors]
+
+    B1 --> B11[Insert Data: Expenses, Income, Deposit, Budget]
+    B1 --> B12[Show Data: Expenses, Income, Deposit, Budget]
+    B1 --> B13[Edit Data: Expenses, Income, Deposit, Budget]
+    B1 --> B14[Delete Data: Expenses, Income, Deposit, Budget]
+    B1 --> B15[Search Data: Expenses, Deposit, Budget]
+
+    B2 --> B21[Confirmations: Data added/modified/deleted successfully]
+    B2 --> B22[Lists: Expenses, Income, Deposits, Budgets]
+    B2 --> B23[Reports / Summary: Total Expenses/Income/Balance, Budget summaries, Savings progress]
+    B2 --> B24[Alerts: Budget exceeded, Savings goal approaching]
+    B2 --> B25[Errors: Invalid input, Data not found]
+
+    B21 --> C[Usuario recibe respuesta]
+    B22 --> C
+    B23 --> C
+    B24 --> C
+    B25 --> C

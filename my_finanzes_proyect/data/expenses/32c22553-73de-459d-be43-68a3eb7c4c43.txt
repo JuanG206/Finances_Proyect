@@ -1,0 +1,5 @@
+id=32c22553-73de-459d-be43-68a3eb7c4c43
+name=Compu
+amount=250.0
+category=Work
+date=2025-12-11T00:00:00

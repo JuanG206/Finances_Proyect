@@ -1,0 +1,41 @@
+flowchart TD
+    A[Usuario] --> B[main.py: Interfaz / Menú]
+
+    B --> C[Controllers: Lógica de negocio]
+    C --> C1[ExpenseController]
+    C --> C2[IncomeController]
+    C --> C3[DepositController]
+    C --> C4[BudgetController]
+    C --> C5[ReportController]
+
+    C1 --> M1[Expense Model]
+    C2 --> M2[Income Model]
+    C3 --> M3[Deposit Model]
+    C4 --> M4[Budget Model]
+    C5 --> M5[Acceso a todos los modelos]
+
+    M1 --> S1[Storage: Save/Load/Delete Expense]
+    M2 --> S2[Storage: Save/Load/Delete Income]
+    M3 --> S3[Storage: Save/Load/Delete Deposit]
+    M4 --> S4[Storage: Save/Load/Delete Budget]
+    M5 --> S5[Storage: Cargar todos los datos para reportes]
+
+    S1 --> B_Out[main.py: Mostrar confirmación/lista/reporte]
+    S2 --> B_Out
+    S3 --> B_Out
+    S4 --> B_Out
+    S5 --> B_Out
+
+    subgraph Utils
+        U1[helpers.py: Validaciones, ID generator, formateo]
+        U2[terminal.py: limpiar pantalla, print tables]
+    end
+
+    M1 --> U1
+    M2 --> U1
+    M3 --> U1
+    M4 --> U1
+    M5 --> U1
+
+    B_Out --> Usuario[Usuario recibe respuesta]
+

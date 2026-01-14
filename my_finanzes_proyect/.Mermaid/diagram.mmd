@@ -1,0 +1,154 @@
+flowchart TD
+
+%% ==== MAIN MENU ====
+A[Usuario inicia programa] --> B[Mostrar menú principal]
+
+B --> C[My Expenses]
+B --> D[My Budget]
+B --> E[My Income]
+B --> F[My Savings & Wish List]
+B --> G[Reports & Alerts]
+
+%% ==== EXPENSES ====
+subgraph Expenses
+    C --> C1[Add Expense]
+    C --> C2[Modify Expense]
+    C --> C3[Delete Expense]
+    
+    C1 --> EC1[Expense Controller Add]
+    EC1 --> EM1[Expense Model]
+    EM1 --> ES1[Storage Save Expense]
+    ES1 --> ER1[Expense added]
+
+    C2 --> EC2[Expense Controller Modify]
+    EC2 --> ES2[Storage Load Expenses]
+    ES2 --> EM2[Expense Model Update]
+    EM2 --> ES3[Storage Update Expense]
+    ES3 --> ER2[Expense modified]
+
+    C3 --> EC3[Expense Controller Delete]
+    EC3 --> ES4[Storage Delete Expense]
+    ES4 --> ER3[Expense deleted]
+end
+
+%% ==== DEPOSITS ====
+subgraph Deposits
+    D --> D1[Add Deposit]
+    D1 --> DC1[Deposit Controller Add]
+    DC1 --> DM1[Deposit Model]
+    DM1 --> DS1[Storage Save Deposit]
+    DS1 --> DR1[Deposit added]
+end
+
+%% ==== BUDGETS ====
+subgraph Budgets
+    D --> D2[Create Budget]
+    D --> D3[Modify Budget]
+    D --> D4[Delete Budget]
+    D --> D5[Add Expense to Budget]
+
+    D2 --> BC1[Budget Controller Create]
+    BC1 --> BM1[Budget Model]
+    BM1 --> BS1[Storage Save Budget]
+    BS1 --> BR1[Budget created]
+
+    D3 --> BC2[Budget Controller Modify]
+    BC2 --> BS2[Storage Load Budget]
+    BS2 --> BM2[Budget Model Update]
+    BM2 --> BS3[Storage Update Budget]
+    BS3 --> BR2[Budget modified]
+
+    D4 --> BC3[Budget Controller Delete]
+    BC3 --> BS4[Storage Delete Budget]
+    BS4 --> BR3[Budget deleted]
+
+    D5 --> BC4[Budget Controller Add Expense]
+    BC4 --> BS5[Storage Load Budget]
+    BS5 --> BM3[Budget Model Add Expense]
+    BM3 --> BS6[Storage Update Budget]
+    BS6 --> BR4[Expense added to Budget]
+end
+
+%% ==== INCOME ====
+subgraph Incomes
+    E --> E1[Add Income]
+    E --> E2[Modify Income]
+    E --> E3[Delete Income]
+
+    E1 --> IC1[Income Controller Add]
+    IC1 --> IM1[Income Model]
+    IM1 --> IS1[Storage Save Income]
+    IS1 --> IR1[Income added]
+
+    E2 --> IC2[Income Controller Modify]
+    IC2 --> IS2[Storage Load Income]
+    IS2 --> IM2[Income Model Update]
+    IM2 --> IS3[Storage Update Income]
+    IS3 --> IR2[Income modified]
+
+    E3 --> IC3[Income Controller Delete]
+    IC3 --> IS4[Storage Delete Income]
+    IS4 --> IR3[Income deleted]
+end
+
+%% ==== SAVINGS ====
+subgraph Savings
+    F --> F1[Create Savings Budget]
+    F --> F2[Modify Savings Budget]
+    F --> F3[Delete Savings Budget]
+
+    F1 --> SC1[Savings Controller Create]
+    SC1 --> SM1[Savings Model]
+    SM1 --> SS1[Storage Save Savings]
+    SS1 --> SR1[Savings goal created]
+
+    F2 --> SC2[Savings Controller Modify]
+    SC2 --> SS2[Storage Load Savings]
+    SS2 --> SM2[Savings Model Update]
+    SM2 --> SS3[Storage Update Savings]
+    SS3 --> SR2[Savings modified]
+
+    F3 --> SC3[Savings Controller Delete]
+    SC3 --> SS4[Storage Delete Savings]
+    SS4 --> SR3[Savings deleted]
+end
+
+%% ==== REPORTS & ALERTS ====
+subgraph Reports
+    G --> R1[Generate Monthly Summary]
+    G --> R2[Generate Budget Alerts]
+    G --> R3[Generate Savings Progress]
+
+    R1 --> RC1[Report Controller Summary]
+    R2 --> RC2[Report Controller Alerts]
+    R3 --> RC3[Report Controller Savings]
+
+    RC1 --> RD1[Load Expenses, Income, Budget]
+    RC2 --> RD2[Load Budgets]
+    RC3 --> RD3[Load Savings]
+
+    RD1 --> RO1[Show Summary to User]
+    RD2 --> RO2[Show Alerts to User]
+    RD3 --> RO3[Show Savings Progress]
+end
+
+%% ==== OUTPUT ====
+ER1 --> OUT[Mostrar mensaje al usuario]
+ER2 --> OUT
+ER3 --> OUT
+DR1 --> OUT
+BR1 --> OUT
+BR2 --> OUT
+BR3 --> OUT
+BR4 --> OUT
+IR1 --> OUT
+IR2 --> OUT
+IR3 --> OUT
+SR1 --> OUT
+SR2 --> OUT
+SR3 --> OUT
+RO1 --> OUT
+RO2 --> OUT
+RO3 --> OUT
+
+OUT --> H[Fin de operación o volver al menú]
